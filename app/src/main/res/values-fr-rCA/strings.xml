@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tp1</string>
+    <string name="what_s_that_color">Quelle-est cette couleur ?</string>
+    <string name="buttonDefault">Default</string>
+    <string name="red">ROUGE</string>
+    <string name="pink">ROSE</string>
+    <string name="blue">BLEU</string>
+    <string name="violet">VIOLET</string>
+    <string name="green">VERT</string>
+    <string name="brown">BRUN</string>
+    <string name="orange">ORANGE</string>
+</resources>

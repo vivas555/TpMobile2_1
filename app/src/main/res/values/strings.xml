@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Tp1</string>
+    <string name="what_s_that_color">What\'s that color ?</string>
+    <string name="buttonDefault">Default</string>
+    <string name="red">RED</string>
+    <string name="pink">PINK</string>
+    <string name="blue">BLUE</string>
+    <string name="violet">VIOLET</string>
+    <string name="green">GREEN</string>
+    <string name="brown">BROWN</string>
+    <string name="orange">ORANGE</string>
 </resources>
