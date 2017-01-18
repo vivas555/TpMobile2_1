@@ -1,21 +1,18 @@
 package com.example.felix.tp1;
 
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Choreographer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
-import static android.R.attr.button;
+import static com.example.felix.tp1.Comparator.checkIfListHaveOneInCommon;
 
 public class FindMeColor extends AppCompatActivity {
 
@@ -28,8 +25,6 @@ public class FindMeColor extends AppCompatActivity {
     private Chooser chooser;
     private MediaPlayer mediaPlayerGood;
     private MediaPlayer mediaPlayerBad;
-    private ArrayList<ColorForGame> colorsPresentForText;
-    private ArrayList<ColorForGame> colorsPresentForColor;
     private Boolean isResuming;
 
     @Override
@@ -62,7 +57,7 @@ public class FindMeColor extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (chooser.getColorsInGame() == null) {
-            chooser = creatChooser();
+            chooser = createChooser();
         }
 
         if (isResuming == false) {
@@ -103,8 +98,10 @@ public class FindMeColor extends AppCompatActivity {
         btn2.setTextColor(savedInstanceState.getInt("SecondButtonColor"));
         btn3.setTextColor(savedInstanceState.getInt("ThirdButtonColor"));
         btn4.setTextColor(savedInstanceState.getInt("FourthButtonColor"));
-        //TODO Debug this
-        changeCircleColor(savedInstanceState.getInt("CurrentColorColorCode"));
+
+
+       changeCircleColor(currentColor.colorCode);
+
 
         isResuming = true;
     }
@@ -140,11 +137,11 @@ public class FindMeColor extends AppCompatActivity {
         changeCircleColor(colorsPresentInThisRound.get(0).colorCode);
 
 
-        colorsPresentForText = new ArrayList<ColorForGame>(colorsPresentInThisRound);
+        ArrayList<ColorForGame> colorsPresentForText = new ArrayList<ColorForGame>(colorsPresentInThisRound);
         Collections.shuffle(colorsPresentForText);
 
 
-        colorsPresentForColor = new ArrayList<ColorForGame>(colorsPresentInThisRound);
+        ArrayList<ColorForGame> colorsPresentForColor = new ArrayList<ColorForGame>(colorsPresentInThisRound);
         Collections.shuffle(colorsPresentForColor);
         Collections.copy(colorsPresentForColor, colorsPresentInThisRound);
 
@@ -175,17 +172,7 @@ public class FindMeColor extends AppCompatActivity {
         btn4.setTextColor(ContextCompat.getColorStateList(this, colors.get(3).colorCode));
     }
 
-    private boolean checkIfListHaveOneInCommon(ArrayList<ColorForGame> colors, ArrayList<ColorForGame> texts) {
-
-        for (int i = 0; i < 4; i++) {
-            if (colors.get(0).equals(texts.get(0))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private Chooser creatChooser() {
+    private Chooser createChooser() {
 
         ArrayList<ColorForGame> colorForGameArrayList = new ArrayList<>();
         ColorForGame colorRed = new ColorForGame(R.string.red, R.color.red);
