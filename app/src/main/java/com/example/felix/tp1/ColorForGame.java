@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 /**
  * Created by Felix on 2017-01-16.
  */
-
+//BEN_REVIEW :  Suggestion : GameColor
 public class ColorForGame {
     public int name;
     public int colorCode;
@@ -17,6 +17,7 @@ public class ColorForGame {
         this.colorCode = colorCode;
     }
 
+    //BEN_REVIEW : À mettre avant l'autre constructeur.
     public ColorForGame() {
 
     }

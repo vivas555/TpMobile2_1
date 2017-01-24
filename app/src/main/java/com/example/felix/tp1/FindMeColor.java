@@ -14,8 +14,10 @@ import java.util.Collections;
 
 import static com.example.felix.tp1.Comparator.checkIfListHaveOneInCommon;
 
+//BEN_CORRECTION : On ne sait pas que c'est une activité par le nom. Je pensais au départ que c'était ta classe du modèle.
 public class FindMeColor extends AppCompatActivity {
 
+    //BEB_REVIEW : Abréviations inutiles (btn1) et manques de précision (circle ? circleView peut être ?)
     private Button btn1;
     private Button btn2;
     private Button btn3;
@@ -60,9 +62,13 @@ public class FindMeColor extends AppCompatActivity {
             chooser = createChooser();
         }
 
+        //BEN_CORRECTION : Si tu ne "resume" pas, c'est donc que tu commence une nouvelle partie. Le code de la condition en haut pourrait donc être dans le
+        //                 "else" de cette condition plus bas.
+
         if (isResuming == false) {
             startRound();
         }
+
 
     }
 
@@ -71,6 +77,7 @@ public class FindMeColor extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
+        //BEN_CORRECTIOn : Constantes...
         outState.putString("FristButtonText", (String) btn1.getText());
         outState.putString("SecondButtonText", (String) btn2.getText());
         outState.putString("ThirdButtonText", (String) btn3.getText());
@@ -86,6 +93,8 @@ public class FindMeColor extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+
+        //BEN_CORRECTIOn : Double raison d'avoir des constantes... que feras-tu si tu change le nom d'un tag ?
         btn1.setText(savedInstanceState.getString("FristButtonText"));
         btn2.setText(savedInstanceState.getString("SecondButtonText"));
         btn3.setText(savedInstanceState.getString("ThirdButtonText"));
@@ -99,7 +108,7 @@ public class FindMeColor extends AppCompatActivity {
         btn3.setTextColor(savedInstanceState.getInt("ThirdButtonColor"));
         btn4.setTextColor(savedInstanceState.getInt("FourthButtonColor"));
 
-
+        //BEN_CORRECTION : Identation.
        changeCircleColor(currentColor.colorCode);
 
 
@@ -112,6 +121,8 @@ public class FindMeColor extends AppCompatActivity {
 
     private boolean verifyAnswer(String buttonText) {
 
+        //BEN_CORRECTIOn : Si je comprend bien, ta couche "Modèle" ne conserve aucun état. Tu te sert des données dans ta vue pour la logique de ton applciation.
+        //                 Ce n'est vraiment pas comme cela que l'on fait du MVC.
         return buttonText.equals(getString(currentColor.name));
     }
 
@@ -129,7 +140,7 @@ public class FindMeColor extends AppCompatActivity {
     }
 
     private void startRound() {
-
+        //BEN_CORRECTION : Je vois ici plein de logique qui devrait être dans le couche modèle.
         ArrayList<ColorForGame> colorsPresentInThisRound = chooser.generateRound();
 
         currentColor = colorsPresentInThisRound.get(0);
